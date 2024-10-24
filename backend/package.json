@@ -2,22 +2,22 @@
   "name": "chat-backend",
   "version": "1.0.0",
   "main": "servers.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "build-css": "sass --watch ../frontend/src/scss:../frontend/dist/css/",
+    "start": "nodemon server.js",
+    "dev": "concurrently \"npm run build-css\" \"npm run start\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.1",
-    "jquery": "^3.7.1",
+    "nodemon": "^3.1.7",
     "socket.io": "^4.8.0"
   },
   "devDependencies": {
-    "gulp": "^5.0.0",
-    "gulp-nodemon": "^2.5.0",
-    "gulp-shell": "^0.8.0"
+    "concurrently": "^9.0.1"
   },
   "description": ""
 }

@@ -1,0 +1,42 @@
+@use "sass:color";
+@use "variables";
+
+.lobbys-ctn {
+    width: 100svw;
+    height: 100svh;
+  
+    display: grid;
+    place-content: center;
+  // Icone de criar o botao
+  .lobby-create-btn {
+    max-width: 500px;
+    width: 100%;
+    height: 70px;
+
+    button {
+      width: 100%;
+      height: 100%;
+      background-color: variables.$clr-primary;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      position: relative;
+
+      &:hover {
+        background-color: color.scale(variables.$clr-primary, $lightness: -10%);
+      }
+
+    }
+    .create-icon {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+  }
+}

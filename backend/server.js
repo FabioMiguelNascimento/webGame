@@ -1,28 +1,21 @@
-const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
-const path = require('path');
+import express from 'express';
+import { createServer } from 'http';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
 const app = express();
-const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: 'http://localhost:5173',
-    methods: ['GET', 'POST']
-  }
-});
+const server = createServer(app);
 
-// Servir arquivos estáticos do frontend
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const port = 3000;
 
-// Rota para a URL raiz
+// Servir arquivos estáticos da pasta 'frontend/dist'
+app.use(express.static(join(__dirname, '../frontend/dist')));
+
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+  res.sendFile(join(__dirname, '../frontend/dist', 'index.html'));
 });
 
-// Eventos de socket.io
-// require('./sockets/gameEvents')(io);
-
-server.listen(4000, () => {
-  console.log('Server listening on port 4000');
+server.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
 });
